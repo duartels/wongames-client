@@ -1,7 +1,7 @@
 module.exports = {
   testEnvironment: 'jsdom',
   testPathIgnorePatterns: ['/node_modules/', '/.next/'],
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     'src/**/*.ts(x)',
     '!src/app/**', //should be tested by e2e
@@ -19,6 +19,7 @@ module.exports = {
   // v6 of styled-components doesn't inject styles in test environment
   // we should to force it to use the browser version
   moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
     '^styled-components':
       'styled-components/dist/styled-components.browser.cjs.js'
   }
