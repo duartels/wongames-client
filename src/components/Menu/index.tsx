@@ -10,7 +10,7 @@ import * as S from './styles'
 export const Menu = () => (
   <S.Wrapper>
     <S.IconWrapper>
-      <MenuIcon />
+      <MenuIcon aria-label="Open Menu" />
     </S.IconWrapper>
 
     <S.LogoWrapper>
@@ -19,10 +19,10 @@ export const Menu = () => (
 
     <S.MenuGroup>
       <S.IconWrapper>
-        <SearchIcon />
+        <SearchIcon aria-label="Search" />
       </S.IconWrapper>
       <S.IconWrapper>
-        <ShoppingCartIcon />
+        <ShoppingCartIcon aria-label="Shopping cart" />
       </S.IconWrapper>
     </S.MenuGroup>
   </S.Wrapper>
