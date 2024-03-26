@@ -31,4 +31,21 @@ describe('<Banner />', () => {
       'https://source.unsplash.com/user/willianjusten/1042x580'
     )
   })
+
+  it('should render a Ribbon', () => {
+    renderWithTheme(
+      <Banner
+        {...props}
+        ribbon="20% OFF"
+        ribbonSize="normal"
+        ribbonColor="primary"
+      />
+    )
+
+    const ribbon = screen.getByText(/20% OFF/i)
+
+    expect(ribbon).toBeInTheDocument()
+    expect(ribbon).toHaveStyle({ backgroundColor: '#F231A5' })
+    expect(ribbon).toHaveStyle({ height: '3.6rem', fontSize: '1.4rem' })
+  })
 })
