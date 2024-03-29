@@ -3,18 +3,39 @@ import media from 'styled-media-query'
 
 import { HighlightProps } from '.'
 
-type WrapperProps = Pick<HighlightProps, 'backgroundImage'>
+type WrapperProps = Pick<HighlightProps, 'backgroundImage' | 'alignment'>
+
+const wrapperModifiers = {
+  right: () => css`
+    grid-template-areas: 'floatimage content';
+    grid-template-columns: 1.3fr 2fr;
+
+    ${Content} {
+      text-align: right;
+    }
+  `,
+  left: () => css`
+    grid-template-areas: 'content floatimage';
+    grid-template-columns: 2fr 1.3fr;
+
+    ${Content} {
+      text-align: left;
+    }
+
+    ${FloatImage} {
+      justify-self: end;
+    }
+  `
+}
 
 export const Wrapper = styled.main<WrapperProps>`
-  ${({ backgroundImage }) => css`
+  ${({ backgroundImage, alignment }) => css`
     position: relative;
     height: 23rem;
     background-image: url(${backgroundImage});
     background-position: center center;
     background-size: cover;
     display: grid;
-    grid-template-areas: 'floatimage content';
-    grid-template-columns: 1.3fr 2fr;
 
     &::after {
       content: '';
@@ -27,6 +48,8 @@ export const Wrapper = styled.main<WrapperProps>`
     ${media.greaterThan('medium')`
       height: 32rem;
     `}
+
+    ${wrapperModifiers[alignment!]()}
   `}
 `
 
@@ -49,7 +72,6 @@ export const Content = styled.div`
     grid-area: content;
     z-index: ${theme.layers.base};
     padding: ${theme.spacings.xsmall};
-    text-align: right;
 
     ${media.greaterThan('medium')`
       padding: ${theme.spacings.large};
