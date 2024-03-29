@@ -1,7 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { AddShoppingCart, FavoriteBorder } from 'styled-icons/material-outlined'
+import {
+  AddShoppingCart,
+  Favorite,
+  FavoriteBorder
+} from 'styled-icons/material-outlined'
 
 import { Button } from '../Button'
+import { Ribbon, RibbonColors, RibbonSizes } from '../Ribbon'
 import * as S from './styles'
 
 export type GameCardProps = {
@@ -10,6 +15,11 @@ export type GameCardProps = {
   img: string
   price: string
   promotionalPrice?: string
+  favorite?: boolean
+  onFav?: () => void
+  ribbon?: React.ReactNode
+  ribbonSize?: RibbonSizes
+  ribbonColor?: RibbonColors
 }
 
 export const GameCard = ({
@@ -17,7 +27,12 @@ export const GameCard = ({
   img,
   price,
   title,
-  promotionalPrice
+  onFav,
+  promotionalPrice,
+  favorite = false,
+  ribbon,
+  ribbonSize = 'normal',
+  ribbonColor = 'primary'
 }: GameCardProps) => (
   <S.Wrapper>
     <S.ImageBox>
@@ -30,8 +45,12 @@ export const GameCard = ({
         <S.Developer>{developer}</S.Developer>
       </S.Info>
 
-      <S.FavButton role="button">
-        <FavoriteBorder aria-label="Add to wishlist" />
+      <S.FavButton role="button" onClick={onFav}>
+        {favorite ? (
+          <Favorite aria-label="Remove from wishlist" />
+        ) : (
+          <FavoriteBorder aria-label="Add to wishlist" />
+        )}
       </S.FavButton>
 
       <S.BuyBox>
@@ -40,5 +59,11 @@ export const GameCard = ({
         <Button icon={<AddShoppingCart />} size="small" />
       </S.BuyBox>
     </S.Content>
+
+    {!!ribbon && (
+      <Ribbon size={ribbonSize} color={ribbonColor}>
+        {ribbon}
+      </Ribbon>
+    )}
   </S.Wrapper>
 )

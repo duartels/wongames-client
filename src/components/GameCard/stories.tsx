@@ -4,7 +4,10 @@ import { GameCard, GameCardProps } from '.'
 
 export default {
   title: 'GameCard',
-  component: GameCard
+  component: GameCard,
+  argTypes: {
+    onFav: { action: 'clicked' }
+  }
 } as Meta
 
 export const Default: StoryObj<GameCardProps> = {
@@ -30,5 +33,19 @@ export const WithPromotionalPrice: StoryObj<GameCardProps> = {
   args: {
     ...Default.args,
     promotionalPrice: 'R$ 215,00'
+  }
+}
+
+export const WithRibbon: StoryObj<GameCardProps> = {
+  render: (args: GameCardProps) => (
+    <div style={{ width: '30rem' }}>
+      <GameCard {...args} />
+    </div>
+  ),
+  args: {
+    ...Default.args,
+    ribbon: '20% OFF',
+    ribbonSize: 'small',
+    ribbonColor: 'secondary'
   }
 }
