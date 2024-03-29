@@ -8,7 +8,7 @@ export default {
 } as Meta
 
 export const Default: StoryObj<GameCardProps> = {
-  render: (args: GameCardProps) => (
+  render: (args) => (
     <div style={{ width: '30rem' }}>
       <GameCard {...args} />
     </div>

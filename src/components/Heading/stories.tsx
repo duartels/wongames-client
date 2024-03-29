@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { Heading, HeadingProps } from '.'
 
@@ -7,8 +7,8 @@ export default {
   component: Heading
 } as Meta
 
-export const Default = {
-  render: (args: HeadingProps) => <Heading {...args} />,
+export const Default: StoryObj<HeadingProps> = {
+  render: (args) => <Heading {...args} />,
   args: {
     children: 'Most Populars'
   }

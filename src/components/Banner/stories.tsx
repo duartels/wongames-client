@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/react'
+import { Meta, StoryObj } from '@storybook/react'
 
 import { Banner, BannerProps } from '.'
 
@@ -12,8 +12,8 @@ export default {
   }
 } as Meta
 
-export const Default = {
-  render: (args: BannerProps) => (
+export const Default: StoryObj<BannerProps> = {
+  render: (args) => (
     <div style={{ maxWidth: '104rem', margin: '0 auto' }}>
       <Banner {...args} />
     </div>
@@ -30,18 +30,14 @@ export const Default = {
   }
 }
 
-export const WithRibbon = {
-  render: (args: BannerProps) => (
+export const WithRibbon: StoryObj<BannerProps> = {
+  render: (args) => (
     <div style={{ maxWidth: '104rem', margin: '0 auto' }}>
       <Banner {...args} />
     </div>
   ),
   args: {
-    img: 'https://source.unsplash.com/user/willianjusten/1042x580',
-    title: 'Defy death 1',
-    subtitle: '<p>Play the new <strong>CrashLands</strong> season</p>',
-    buttonLabel: 'Buy now',
-    buttonLink: '/games/defy-death',
+    ...Default.args,
     ribbon: '20% OFF',
     ribbonSize: 'normal',
     ribbonColor: 'primary'
