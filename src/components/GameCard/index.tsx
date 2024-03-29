@@ -31,7 +31,7 @@ export const GameCard = ({
   promotionalPrice,
   favorite = false,
   ribbon,
-  ribbonSize = 'normal',
+  ribbonSize = 'small',
   ribbonColor = 'primary'
 }: GameCardProps) => (
   <S.Wrapper>
