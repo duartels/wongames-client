@@ -1,44 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { GameCardSlider, GameCardSliderProps } from '.'
+import { mockGameCardSlider } from './mock'
 
 export default {
   title: 'GameCardSlider',
   component: GameCardSlider
 } as Meta
-
-const items = [
-  {
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235,00'
-  },
-  {
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235,00'
-  },
-  {
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235,00'
-  },
-  {
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235,00'
-  },
-  {
-    title: 'Population Zero',
-    developer: 'Rockstar Games',
-    img: 'https://source.unsplash.com/user/willianjusten/300x140',
-    price: 'R$ 235,00'
-  }
-]
 
 export const Default: StoryObj<GameCardSliderProps> = {
   render: (args) => (
@@ -47,7 +15,7 @@ export const Default: StoryObj<GameCardSliderProps> = {
     </div>
   ),
   args: {
-    items
+    items: mockGameCardSlider
   },
   parameters: {
     layout: 'fullscreen',

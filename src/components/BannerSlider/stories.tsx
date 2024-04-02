@@ -1,29 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { BannerSlider, BannerSliderProps } from '.'
+import { mockBannerSlider } from './mock'
 
 export default {
   title: 'BannerSlider',
   component: BannerSlider
 } as Meta
-
-const items = [
-  {
-    title: 'Defy death',
-    subtitle: '<p>Play the new <strong>CrashLands</strong> season',
-    img: 'https://source.unsplash.com/user/willianjusten/1042x580',
-    buttonLabel: 'Buy now',
-    buttonLink: '/games/defy-death',
-    ribbon: 'Bestselling'
-  },
-  {
-    title: 'Defy death 3',
-    subtitle: '<p>Play the new <strong>CrashLands</strong> season',
-    img: 'https://source.unsplash.com/user/willianjusten/1042x580',
-    buttonLabel: 'Buy now',
-    buttonLink: '/games/defy-death'
-  }
-]
 
 export const Default: StoryObj<BannerSliderProps> = {
   render: (args) => (
@@ -32,7 +15,7 @@ export const Default: StoryObj<BannerSliderProps> = {
     </div>
   ),
   args: {
-    items
+    items: mockBannerSlider
   },
   parameters: {
     layout: 'fullscreen',
