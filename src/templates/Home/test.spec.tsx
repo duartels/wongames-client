@@ -45,4 +45,12 @@ describe('<Home />', () => {
       screen.getByRole('heading', { name: /free games/i })
     ).toBeInTheDocument()
   })
+
+  it('should render section elements', () => {
+    renderWithTheme(<Home {...data} />)
+
+    expect(screen.getAllByText(/defy death 2/i)).toHaveLength(1)
+    expect(screen.getAllByText(/population zero/i)).toHaveLength(20)
+    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(3)
+  })
 })
