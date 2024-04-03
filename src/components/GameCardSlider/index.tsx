@@ -1,3 +1,4 @@
+'use client'
 import {
   ArrowBackIos as ArrowLeft,
   ArrowForwardIos as ArrowRight
