@@ -25,9 +25,9 @@ export const Button = ({
 }: ButtonProps) => (
   <S.Wrapper
     size={size}
-    fullWidth={fullWidth}
-    hasIcon={!!icon}
-    minimal={minimal}
+    $fullWidth={fullWidth}
+    $hasIcon={!!icon}
+    minimal={+minimal}
     {...props}
   >
     {icon}

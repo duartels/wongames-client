@@ -22,9 +22,9 @@ export const Heading = ({
 }: HeadingProps) => (
   <S.Wrapper
     color={color}
-    lineLeft={lineLeft}
-    lineBottom={lineBottom}
-    lineColor={lineColor}
+    $lineLeft={lineLeft}
+    $lineBottom={lineBottom}
+    $lineColor={lineColor}
     size={size}
   >
     {children}

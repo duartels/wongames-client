@@ -3,7 +3,9 @@ import media from 'styled-media-query'
 
 import { HighlightProps } from '.'
 
-type WrapperProps = Pick<HighlightProps, 'backgroundImage' | 'alignment'>
+type WrapperProps = {
+  $backgroundImage: string
+} & Pick<HighlightProps, 'alignment'>
 
 const wrapperModifiers = {
   right: () => css`
@@ -29,10 +31,10 @@ const wrapperModifiers = {
 }
 
 export const Wrapper = styled.main<WrapperProps>`
-  ${({ backgroundImage, alignment }) => css`
+  ${({ $backgroundImage, alignment }) => css`
     position: relative;
     height: 23rem;
-    background-image: url(${backgroundImage});
+    background-image: url(${$backgroundImage});
     background-position: center center;
     background-size: cover;
     display: grid;

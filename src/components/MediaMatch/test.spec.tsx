@@ -9,10 +9,10 @@ describe('<MediaMatch />', () => {
   beforeEach(() => {
     render(
       <>
-        <MediaMatch greaterThan="medium">
+        <MediaMatch $greaterThan="medium">
           <h1 data-testid="desktop">Desktop</h1>
         </MediaMatch>
-        <MediaMatch lessThan="medium">
+        <MediaMatch $lessThan="medium">
           <h1 data-testid="mobile">Mobile</h1>
         </MediaMatch>
       </>

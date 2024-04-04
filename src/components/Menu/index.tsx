@@ -21,7 +21,7 @@ export const Menu = ({ username }: MenuProps) => {
 
   return (
     <S.Wrapper>
-      <MediaMatch lessThan="medium">
+      <MediaMatch $lessThan="medium">
         <S.IconWrapper onClick={() => setIsOpen(true)}>
           <MenuIcon aria-label="Open Menu" />
         </S.IconWrapper>
@@ -31,7 +31,7 @@ export const Menu = ({ username }: MenuProps) => {
         <Logo $hideOnMobile />
       </S.LogoWrapper>
 
-      <MediaMatch greaterThan="medium">
+      <MediaMatch $greaterThan="medium">
         <S.MenuNav>
           <S.MenuLink href="#">Home</S.MenuLink>
           <S.MenuLink href="#">Explore</S.MenuLink>
@@ -47,13 +47,13 @@ export const Menu = ({ username }: MenuProps) => {
         </S.IconWrapper>
 
         {!username && (
-          <MediaMatch greaterThan="medium">
+          <MediaMatch $greaterThan="medium">
             <Button>Sign in</Button>
           </MediaMatch>
         )}
       </S.MenuGroup>
 
-      <S.MenuFull aria-hidden={!isOpen} isOpen={isOpen}>
+      <S.MenuFull aria-hidden={!isOpen} $isOpen={isOpen}>
         <CloseIcon aria-label="Close Menu" onClick={() => setIsOpen(false)} />
 
         <S.MenuNav>
