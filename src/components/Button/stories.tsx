@@ -31,3 +31,12 @@ export const AsLink: StoryObj<ButtonProps> = {
     href: '/link'
   }
 }
+
+export const Minimal: StoryObj<ButtonProps> = {
+  render: (args: ButtonProps) => <Button {...args} />,
+  args: {
+    children: 'Buy now',
+    minimal: true,
+    icon: <AddShoppingCart />
+  }
+}
