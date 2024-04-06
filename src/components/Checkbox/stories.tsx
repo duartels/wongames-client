@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Checkbox } from '.'
+import { Checkbox, CheckboxProps } from '.'
 
 export default {
   title: 'Checkbox',
@@ -10,4 +10,16 @@ export default {
   }
 } as Meta
 
-export const Default: StoryObj = {}
+export const Default: StoryObj<CheckboxProps> = {
+  render: (args) => <Checkbox {...args} />
+}
+
+export const WithLabel: StoryObj<CheckboxProps> = {
+  render: (args) => <Checkbox {...args} />,
+  args: {
+    label: 'checkbox label',
+    labelFor: 'check',
+    labelColor: 'black',
+    isChecked: true
+  }
+}
