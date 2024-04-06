@@ -59,6 +59,13 @@ export const Icon = styled.div<IconProps>`
   `}
 `
 
+export const ErrorMessage = styled.p`
+  ${({ theme }) => css`
+    color: ${theme.colors.red};
+    font-size: ${theme.font.sizes.xsmall};
+  `}
+`
+
 const wrapperModifiers = {
   disabled: (theme: DefaultTheme) => css`
     ${Label},
@@ -70,15 +77,26 @@ const wrapperModifiers = {
         color: currentColor;
       }
     }
+  `,
+  error: (theme: DefaultTheme) => css`
+    ${InputWrapper} {
+      border-color: ${theme.colors.red};
+    }
+    ${Icon},
+    ${Label} {
+      color: ${theme.colors.red};
+    }
   `
 }
 
 type WrapperProps = {
   disabled?: boolean
+  $hasError?: boolean
 }
 
 export const Wrapper = styled.div<WrapperProps>`
-  ${({ theme, disabled }) => css`
+  ${({ theme, disabled, $hasError }) => css`
     ${disabled && wrapperModifiers.disabled(theme)}
+    ${$hasError && wrapperModifiers.error(theme)}
   `}
 `
