@@ -4,7 +4,7 @@ import { AddShoppingCart } from 'styled-icons/material-outlined'
 import { TextField, TextFieldProps } from '.'
 
 export default {
-  title: 'TextField',
+  title: 'Form/TextField',
   component: TextField,
   argTypes: {
     onInput: { action: 'changed' }
