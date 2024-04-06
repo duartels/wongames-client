@@ -1,5 +1,6 @@
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { AddShoppingCart } from 'styled-icons/material-outlined'
 
 import { renderWithTheme } from '@/utils/tests/helpers'
 
@@ -56,5 +57,11 @@ describe('<TextField />', () => {
 
     await userEvent.tab()
     expect(input).toHaveFocus()
+  })
+
+  it('Renders with Icon', () => {
+    renderWithTheme(<TextField icon={<AddShoppingCart data-testid="icon" />} />)
+
+    expect(screen.getByTestId('icon')).toBeInTheDocument()
   })
 })
