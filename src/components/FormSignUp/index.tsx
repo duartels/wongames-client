@@ -37,7 +37,7 @@ export const FormSignUp = () => (
       </Button>
 
       <FormLink>
-        Already have an account? <Link href="/sign-up">Sign in</Link>
+        Already have an account? <Link href="/sign-in">Sign in</Link>
       </FormLink>
     </form>
   </FormWrapper>
