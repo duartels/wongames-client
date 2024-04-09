@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { useState } from 'react'
 import {
   Close as CloseIcon,
@@ -48,7 +49,9 @@ export const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <MediaMatch $greaterThan="medium">
-            <Button>Sign in</Button>
+            <Link href="/sign-in">
+              <Button>Sign in</Button>
+            </Link>
           </MediaMatch>
         )}
       </S.MenuGroup>
@@ -70,11 +73,13 @@ export const Menu = ({ username }: MenuProps) => {
 
         {!username && (
           <S.RegisterBox>
-            <Button fullWidth size="large">
-              Log in now
-            </Button>
+            <Link href="/sign-in">
+              <Button fullWidth size="large">
+                Sign in now
+              </Button>
+            </Link>
             <span>or</span>
-            <S.CreateAccount href="#" title="Sign Up">
+            <S.CreateAccount href="/sign-up" title="Sign Up">
               Sign Up
             </S.CreateAccount>
           </S.RegisterBox>

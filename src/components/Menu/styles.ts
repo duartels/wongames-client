@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled, { css } from 'styled-components'
 import media from 'styled-media-query'
 
@@ -149,7 +150,7 @@ export const RegisterBox = styled.div`
   `}
 `
 
-export const CreateAccount = styled.a`
+export const CreateAccount = styled(Link)`
   ${({ theme }) => css`
     color: ${theme.colors.primary};
     text-decoration: none;

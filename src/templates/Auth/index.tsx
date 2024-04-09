@@ -1,4 +1,6 @@
 'use client'
+import Link from 'next/link'
+
 import { Heading } from '@/components/Heading'
 import { Logo } from '@/components/Logo'
 
@@ -13,7 +15,9 @@ export const Auth = ({ title, children }: AuthProps) => (
   <S.Wrapper>
     <S.BannerBlock>
       <S.BannerContent>
-        <Logo id="banner" />
+        <Link href="/">
+          <Logo id="banner" />
+        </Link>
 
         <div>
           <Heading size="huge">All your favorite games in one place</Heading>
@@ -30,7 +34,9 @@ export const Auth = ({ title, children }: AuthProps) => (
 
     <S.Content>
       <S.ContentWrapper>
-        <Logo id="content" color="black" size="large" />
+        <Link href="/">
+          <Logo id="content" color="black" size="large" />
+        </Link>
 
         <Heading color="black" lineColor="secondary" lineLeft>
           {title}
