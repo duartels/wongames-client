@@ -1,12 +1,13 @@
+'use client'
 import Link from 'next/link'
 import { AccountCircle, Email, Lock } from 'styled-icons/material-outlined'
 
 import { Button } from '../Button'
+import { FormLink, FormWrapper } from '../Form'
 import { TextField } from '../TextField'
-import * as S from './styles'
 
 export const FormSignUp = () => (
-  <S.Wrapper>
+  <FormWrapper>
     <form>
       <TextField name="name" placeholder="Name" icon={<AccountCircle />} />
 
@@ -35,9 +36,9 @@ export const FormSignUp = () => (
         Sign up now
       </Button>
 
-      <S.FormLink>
+      <FormLink>
         Already have an account? <Link href="/sign-up">Sign in</Link>
-      </S.FormLink>
+      </FormLink>
     </form>
-  </S.Wrapper>
+  </FormWrapper>
 )
