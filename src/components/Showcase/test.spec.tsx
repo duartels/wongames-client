@@ -8,52 +8,54 @@ import { mockGameCardSlider } from '../GameCardSlider/mock'
 import { mockHighlight } from '../Highlight/mock'
 import { Showcase } from '.'
 
+const props = {
+  title: 'Heading',
+  highlight: mockHighlight,
+  games: mockGameCardSlider.slice(0, 1)
+}
+
 describe('<Showcase />', () => {
   it('should render all components', () => {
-    renderWithTheme(
-      <Showcase
-        title="Heading"
-        highlight={mockHighlight}
-        games={mockGameCardSlider}
-      />
-    )
+    renderWithTheme(<Showcase {...props} />)
 
     expect(
-      screen.getByRole('heading', { name: /heading/i })
+      screen.getByRole('heading', { name: props.title })
     ).toBeInTheDocument()
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(4)
-    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(1)
+    expect(screen.getAllByText(props.games[0].title)).toHaveLength(1)
+    expect(screen.getAllByText(props.highlight.title)).toHaveLength(1)
   })
 
   it('should render without title', () => {
     renderWithTheme(
-      <Showcase highlight={mockHighlight} games={mockGameCardSlider} />
+      <Showcase highlight={props.highlight} games={props.games} />
     )
 
     expect(
-      screen.queryByRole('heading', { name: /heading/i })
+      screen.queryByRole('heading', { name: props.title })
     ).not.toBeInTheDocument()
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(4)
-    expect(screen.getAllByText(/read dead is back!/i)).toHaveLength(1)
+    expect(screen.getAllByText(props.games[0].title)).toHaveLength(1)
+    expect(screen.getAllByText(props.highlight.title)).toHaveLength(1)
   })
 
   it('should render without highlight', () => {
-    renderWithTheme(<Showcase title="Heading" games={mockGameCardSlider} />)
+    renderWithTheme(<Showcase title={props.title} games={props.games} />)
 
     expect(
-      screen.getByRole('heading', { name: /heading/i })
+      screen.getByRole('heading', { name: props.title })
     ).toBeInTheDocument()
-    expect(screen.getAllByText(/population zero/i)).toHaveLength(4)
-    expect(screen.queryByText(/read dead is back!/i)).not.toBeInTheDocument()
+    expect(screen.getAllByText(props.games[0].title)).toHaveLength(1)
+    expect(screen.queryByText(props.highlight.title)).not.toBeInTheDocument()
   })
 
   it('should render without games', () => {
-    renderWithTheme(<Showcase title="Heading" highlight={mockHighlight} />)
+    renderWithTheme(
+      <Showcase title={props.title} highlight={props.highlight} />
+    )
 
     expect(
-      screen.getByRole('heading', { name: /heading/i })
+      screen.getByRole('heading', { name: props.title })
     ).toBeInTheDocument()
-    expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument()
-    expect(screen.queryByText(/read dead is back!/i)).toBeInTheDocument()
+    expect(screen.queryByText(props.games[0].title)).not.toBeInTheDocument()
+    expect(screen.queryByText(props.highlight.title)).toBeInTheDocument()
   })
 })
