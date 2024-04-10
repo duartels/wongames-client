@@ -1,3 +1,4 @@
+'use client'
 import { GameCardProps } from '../GameCard'
 import { GameCardSlider } from '../GameCardSlider'
 import { Heading } from '../Heading'
