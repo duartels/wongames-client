@@ -3,26 +3,21 @@ import { screen } from '@testing-library/react'
 import { renderWithTheme } from '@/utils/tests/helpers'
 
 import { GameInfo } from '.'
-
-const props = {
-  title: 'Game Title',
-  description: 'Game Description',
-  price: '210.00'
-}
+import { mockGameInfo } from './mock'
 
 describe('<GameInfo />', () => {
   it('should render game informations', () => {
-    renderWithTheme(<GameInfo {...props} />)
+    renderWithTheme(<GameInfo {...mockGameInfo} />)
 
     expect(
-      screen.getByRole('heading', { name: props.title })
+      screen.getByRole('heading', { name: mockGameInfo.title })
     ).toBeInTheDocument()
-    expect(screen.getByText(props.description)).toBeInTheDocument()
-    expect(screen.getByText(`$${props.price}`)).toBeInTheDocument()
+    expect(screen.getByText(mockGameInfo.description)).toBeInTheDocument()
+    expect(screen.getByText(`$${mockGameInfo.price}`)).toBeInTheDocument()
   })
 
   it('should render buttons', () => {
-    renderWithTheme(<GameInfo {...props} />)
+    renderWithTheme(<GameInfo {...mockGameInfo} />)
 
     expect(
       screen.getByRole('button', { name: /add to cart/i })
