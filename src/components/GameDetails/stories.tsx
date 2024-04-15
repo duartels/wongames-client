@@ -10,6 +10,9 @@ export default {
     platforms: {
       control: 'inline-check',
       options: ['windows', 'linux', 'mac']
+    },
+    releaseDate: {
+      control: 'date'
     }
   }
 } as Meta<GameDetailsProps>
