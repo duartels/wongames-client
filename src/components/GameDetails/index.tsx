@@ -5,16 +5,23 @@ import { MediaMatch } from '../MediaMatch'
 import * as S from './styles'
 
 type Platform = 'windows' | 'linux' | 'mac'
+
+type Rating = 'BR0' | 'BR10' | 'BR12' | 'BR14' | 'BR16' | 'BR18'
+
 export type GameDetailsProps = {
   developer: string
   releaseDate: string
   platforms: Platform[]
+  rating: Rating
+  genres: string[]
 }
 
 export const GameDetails = ({
   developer,
   releaseDate,
-  platforms
+  platforms,
+  rating,
+  genres
 }: GameDetailsProps) => {
   const platformIcons = {
     windows: <Windows title="Windows" size={18} />,
@@ -65,12 +72,14 @@ export const GameDetails = ({
 
         <S.Block>
           <S.Title>Rating</S.Title>
-          <S.Description>18+</S.Description>
+          <S.Description>
+            {rating === 'BR0' ? 'FREE' : `${rating.replace('BR', '')}+`}
+          </S.Description>
         </S.Block>
 
         <S.Block>
           <S.Title>Genres</S.Title>
-          <S.Description>Action / Adventure</S.Description>
+          <S.Description>{genres.join(' / ')}</S.Description>
         </S.Block>
       </S.Content>
     </S.Wrapper>
