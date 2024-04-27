@@ -5,7 +5,7 @@ import {
 } from 'styled-icons/material-outlined'
 
 import { GameCard, GameCardProps } from '../GameCard'
-import { Slider, SliderSettings } from '../Slider'
+import Slider, { SliderSettings } from '../Slider'
 import * as S from './styles'
 
 export type GameCardSliderProps = {
