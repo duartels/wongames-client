@@ -25,7 +25,7 @@ describe('<Gallery />', () => {
     const modal = screen.getByLabelText('modal')
 
     expect(modal.getAttribute('aria-hidden')).toBe('true')
-    expect(modal).toHaveStyle({ opacity: 0 })
+    expect(modal).toHaveStyle({ opacity: 0, pointerEvents: 'none' })
 
     const thumb = screen.getByRole('button', {
       name: /thumb - gallery image 1/i
