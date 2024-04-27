@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   ArrowBackIos as ArrowLeft,
   ArrowForwardIos as ArrowRight,
@@ -56,6 +56,15 @@ const settings: SliderSettings = {
 
 export const Gallery = ({ items }: GalleryProps) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const handleKeyUp = ({ key }: KeyboardEvent) => {
+      key === 'Escape' && setIsOpen(false)
+    }
+
+    window.addEventListener('keyup', handleKeyUp)
+    return () => window.removeEventListener('keyup', handleKeyUp)
+  }, [])
 
   return (
     <S.Wrapper>
