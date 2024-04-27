@@ -57,7 +57,7 @@ describe('<Gallery />', () => {
     expect(modal).toHaveStyle({ opacity: 0 })
   })
 
-  it('should handle close modal when overlay or button clicked', () => {
+  it('should handle close modal when ESC is pressed', () => {
     const { container } = renderWithTheme(
       <Gallery items={mockGallery.slice(0, 2)} />
     )
