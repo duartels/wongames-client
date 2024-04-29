@@ -10,17 +10,17 @@ import * as S from './styles'
 export type BaseProps = PropsWithChildren
 
 export const Base = ({ children }: BaseProps) => (
-  <section>
+  <S.Wrapper>
     <Container>
       <Menu />
     </Container>
 
-    {children}
+    <S.Content>{children}</S.Content>
 
     <S.SectionFooter>
       <Container>
         <Footer />
       </Container>
     </S.SectionFooter>
-  </section>
+  </S.Wrapper>
 )
