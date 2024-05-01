@@ -1,4 +1,6 @@
+import { mockGameCardSlider } from '@/components/GameCardSlider/mock'
 import { gameDetailsMock } from '@/components/GameDetails/mock'
+import { mockHighlight } from '@/components/Highlight/mock'
 
 export const mockGameTemplate = {
   cover:
@@ -26,5 +28,8 @@ export const mockGameTemplate = {
   CD PROJEKT S.A. All rights reserved. All other copyrights and trademarks are the property of their
   respective owners.
 </p>`,
-  details: gameDetailsMock
+  details: gameDetailsMock,
+  upcomingGames: [...mockGameCardSlider],
+  upcomingHighlight: mockHighlight,
+  recommendedGames: [...mockGameCardSlider]
 }
