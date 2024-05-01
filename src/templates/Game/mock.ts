@@ -1,3 +1,5 @@
+import { gameDetailsMock } from '@/components/GameDetails/mock'
+
 export const mockGameTemplate = {
   cover:
     'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
@@ -23,5 +25,6 @@ export const mockGameTemplate = {
   CD PROJEKT®, Cyberpunk®, Cyberpunk 2077® are registered trademarks of CD PROJEKT S.A. © 2019
   CD PROJEKT S.A. All rights reserved. All other copyrights and trademarks are the property of their
   respective owners.
-</p>`
+</p>`,
+  details: gameDetailsMock
 }

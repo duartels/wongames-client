@@ -1,5 +1,6 @@
 'use client'
 import { Gallery, GalleryImageProps } from '@/components/Gallery'
+import { GameDetails, GameDetailsProps } from '@/components/GameDetails'
 import { GameInfo, GameInfoProps } from '@/components/GameInfo'
 import { TextContent } from '@/components/TextContent'
 
@@ -10,6 +11,7 @@ export type GameTemplateProps = {
   cover: string
   gameInfo: GameInfoProps
   description: string
+  details: GameDetailsProps
   gallery?: GalleryImageProps[]
 }
 
@@ -17,6 +19,7 @@ export const Game = ({
   cover,
   gameInfo,
   description,
+  details,
   gallery
 }: GameTemplateProps) => (
   <Base>
@@ -36,6 +39,10 @@ export const Game = ({
       <S.SectionDescription>
         <TextContent title="Description" content={description} />
       </S.SectionDescription>
+
+      <S.SectionGameDetails>
+        <GameDetails {...details} />
+      </S.SectionGameDetails>
     </S.Main>
   </Base>
 )

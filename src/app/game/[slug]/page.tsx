@@ -1,4 +1,5 @@
 import { mockGallery } from '@/components/Gallery/mock'
+import { gameDetailsMock } from '@/components/GameDetails/mock'
 import { Game as GameTemplate } from '@/templates/Game'
 
 export async function generateStaticParams() {
@@ -37,7 +38,8 @@ export default async function Game() {
         price: '200.00'
       },
       gallery: [...mockGallery],
-      description: descriptionHTML
+      description: descriptionHTML,
+      details: gameDetailsMock
     }
   }
 
