@@ -1,5 +1,16 @@
+import { mockGameCardSlider } from '@/components/GameCardSlider/mock'
+import { mockHighlight } from '@/components/Highlight/mock'
 import { Wishlist as WishlistTemplate } from '@/templates/Wishlist'
 
-export default function Wishlist() {
-  return <WishlistTemplate />
+export default async function Wishlist() {
+  async function getProps() {
+    return {
+      recommendedHighlight: mockHighlight,
+      recommendedGames: [...mockGameCardSlider]
+    }
+  }
+
+  const props = await getProps()
+
+  return <WishlistTemplate {...props} />
 }
