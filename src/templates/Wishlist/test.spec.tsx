@@ -13,6 +13,7 @@ jest.mock('@/components/Showcase', () => {
 })
 
 const props = {
+  games: mockGameCardSlider,
   recommendedHighlight: mockHighlight,
   recommendedGames: [...mockGameCardSlider]
 }
@@ -24,6 +25,8 @@ describe('<Wishlist />', () => {
     expect(
       screen.getByRole('heading', { name: /wishlist/i })
     ).toBeInTheDocument()
+
+    expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
     expect(screen.getByTestId('Showcase')).toBeInTheDocument()
   })
 })

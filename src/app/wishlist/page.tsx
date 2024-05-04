@@ -5,6 +5,7 @@ import { Wishlist as WishlistTemplate } from '@/templates/Wishlist'
 export default async function Wishlist() {
   async function getProps() {
     return {
+      games: mockGameCardSlider,
       recommendedHighlight: mockHighlight,
       recommendedGames: [...mockGameCardSlider]
     }
