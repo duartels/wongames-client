@@ -19,7 +19,7 @@ const props = {
 }
 
 describe('<Wishlist />', () => {
-  it('should render the heading', () => {
+  it('should render correctly', () => {
     renderWithTheme(<Wishlist {...props} />)
 
     expect(
@@ -28,5 +28,14 @@ describe('<Wishlist />', () => {
 
     expect(screen.getAllByText(/population zero/i)).toHaveLength(5)
     expect(screen.getByTestId('Showcase')).toBeInTheDocument()
+  })
+
+  it('should render empty when there are no games', () => {
+    renderWithTheme(<Wishlist {...props} games={undefined} />)
+
+    expect(screen.queryByText(/population zero/i)).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: /your wishlist is empty/i })
+    ).toBeInTheDocument()
   })
 })
