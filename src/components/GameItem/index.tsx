@@ -1,13 +1,21 @@
 /* eslint-disable @next/next/no-img-element */
+import { Download } from 'styled-icons/boxicons-solid'
+
 import * as S from './styles'
 
 export type GameItemProps = {
   img: string
   title: string
   price: string
+  downloadLink?: string
 }
 
-export const GameItem = ({ img, price, title }: GameItemProps) => (
+export const GameItem = ({
+  img,
+  price,
+  title,
+  downloadLink
+}: GameItemProps) => (
   <S.Wrapper>
     <S.GameContent>
       <S.ImageBox>
@@ -15,7 +23,18 @@ export const GameItem = ({ img, price, title }: GameItemProps) => (
       </S.ImageBox>
 
       <S.Content>
-        <S.Title>{title}</S.Title>
+        <S.Title>
+          {title}
+          {!!downloadLink && (
+            <S.DownloadLink
+              href={downloadLink}
+              target="_blank"
+              aria-label={`Get ${title} here`}
+            >
+              <Download size={22} />
+            </S.DownloadLink>
+          )}
+        </S.Title>
         <S.Price>{price}</S.Price>
       </S.Content>
     </S.GameContent>

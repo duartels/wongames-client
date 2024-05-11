@@ -17,4 +17,13 @@ describe('<GameItem />', () => {
       screen.getByRole('img', { name: /Red Dead Redemption 2/i })
     ).toHaveAttribute('src', mockGameItem.img)
   })
+
+  it('should render the download link', () => {
+    const downloadLink = 'https://link'
+    renderWithTheme(<GameItem {...mockGameItem} downloadLink={downloadLink} />)
+
+    expect(
+      screen.getByRole('link', { name: `Get ${mockGameItem.title} here` })
+    ).toHaveAttribute('href', downloadLink)
+  })
 })

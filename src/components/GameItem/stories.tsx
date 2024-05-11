@@ -1,6 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { GameItem, GameItemProps } from '.'
+import { mockGameItem } from './mock'
 
 export default {
   title: 'GameItem',
@@ -9,9 +10,13 @@ export default {
 
 export const Default: StoryObj<GameItemProps> = {
   render: (args) => <GameItem {...args} />,
+  args: mockGameItem
+}
+
+export const WithPayment: StoryObj<GameItemProps> = {
+  render: (args) => <GameItem {...args} />,
   args: {
-    img: 'https://source.unsplash.com/user/willianjusten/151x70',
-    title: 'Red Dead Redemption 2',
-    price: 'R$ 215,00'
+    ...mockGameItem,
+    downloadLink: 'https://link'
   }
 }
