@@ -3,18 +3,27 @@ import { Download } from 'styled-icons/boxicons-solid'
 
 import * as S from './styles'
 
+type PaymentInfo = {
+  number: string
+  flag: string
+  img: string
+  purchaseDate: string
+}
+
 export type GameItemProps = {
   img: string
   title: string
   price: string
   downloadLink?: string
+  paymentInfo?: PaymentInfo
 }
 
 export const GameItem = ({
   img,
   price,
   title,
-  downloadLink
+  downloadLink,
+  paymentInfo
 }: GameItemProps) => (
   <S.Wrapper>
     <S.GameContent>
@@ -38,5 +47,15 @@ export const GameItem = ({
         <S.Price>{price}</S.Price>
       </S.Content>
     </S.GameContent>
+
+    {!!paymentInfo && (
+      <S.PaymentContent>
+        <p>{paymentInfo.purchaseDate}</p>
+        <S.CardInfo>
+          <span>{paymentInfo.number}</span>
+          <img src={paymentInfo.img} alt={paymentInfo.flag} />
+        </S.CardInfo>
+      </S.PaymentContent>
+    )}
   </S.Wrapper>
 )

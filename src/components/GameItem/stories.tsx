@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { GameItem, GameItemProps } from '.'
-import { mockGameItem } from './mock'
+import { mockGameItem, mockGameItemWithPayment } from './mock'
 
 export default {
   title: 'GameItem',
@@ -16,7 +16,6 @@ export const Default: StoryObj<GameItemProps> = {
 export const WithPayment: StoryObj<GameItemProps> = {
   render: (args) => <GameItem {...args} />,
   args: {
-    ...mockGameItem,
-    downloadLink: 'https://link'
+    ...mockGameItemWithPayment
   }
 }
