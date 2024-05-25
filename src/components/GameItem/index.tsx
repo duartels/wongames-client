@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+'use client'
 import { Download } from 'styled-icons/boxicons-solid'
 
 import * as S from './styles'
