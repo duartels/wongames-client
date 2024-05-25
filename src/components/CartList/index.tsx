@@ -1,3 +1,4 @@
+'use client'
 import { GameItem, GameItemProps } from '../GameItem'
 import * as S from './styles'
 

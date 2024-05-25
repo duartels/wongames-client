@@ -10,6 +10,9 @@ export default {
     backgrounds: {
       default: 'won-dark'
     }
+  },
+  argTypes: {
+    handlePayment: { action: 'clicked' }
   }
 } as Meta
 
