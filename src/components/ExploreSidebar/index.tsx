@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Button } from '../Button'
 import { Checkbox } from '../Checkbox'
 import { Heading } from '../Heading'
@@ -16,46 +18,60 @@ export type ItemProps = {
   fields: Field[]
 }
 
-export type ExploreSidebarProps = {
-  items: ItemProps[]
+export type Values = {
+  [field: string]: boolean | string
 }
 
-export const ExploreSidebar = ({ items }: ExploreSidebarProps) => (
-  <S.Wrapper>
-    {items.map((item) => (
-      <div key={item.title}>
-        <Heading lineBottom lineColor="secondary" size="small">
-          {item.title}
-        </Heading>
+export type ExploreSidebarProps = {
+  items: ItemProps[]
+  initialValues?: Values
+}
 
-        {item.fields.map((field) => {
-          if (item.type === 'checkbox') {
+export const ExploreSidebar = ({
+  items,
+  initialValues = {}
+}: ExploreSidebarProps) => {
+  const [values] = useState(initialValues)
+
+  return (
+    <S.Wrapper>
+      {items.map((item) => (
+        <div key={item.title}>
+          <Heading lineBottom lineColor="secondary" size="small">
+            {item.title}
+          </Heading>
+
+          {item.fields.map((field) => {
+            if (item.type === 'checkbox') {
+              return (
+                <Checkbox
+                  key={field.name}
+                  name={field.name}
+                  label={field.label}
+                  labelFor={field.name}
+                  isChecked={!!values[field.name]}
+                />
+              )
+            }
+
             return (
-              <Checkbox
+              <Radio
                 key={field.name}
-                name={field.name}
+                id={field.name}
+                name={item.name}
                 label={field.label}
                 labelFor={field.name}
+                value={field.name}
+                defaultChecked={field.name === values[item.name]}
               />
             )
-          }
+          })}
+        </div>
+      ))}
 
-          return (
-            <Radio
-              key={field.name}
-              id={field.name}
-              name={item.name}
-              label={field.label}
-              labelFor={field.name}
-              value={field.name}
-            />
-          )
-        })}
-      </div>
-    ))}
-
-    <Button fullWidth size="medium">
-      Filter
-    </Button>
-  </S.Wrapper>
-)
+      <Button fullWidth size="medium">
+        Filter
+      </Button>
+    </S.Wrapper>
+  )
+}

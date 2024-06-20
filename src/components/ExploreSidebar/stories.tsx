@@ -19,3 +19,14 @@ export const Default: StoryObj<ExploreSidebarProps> = {
     items: mockExploresiderbarFilters
   }
 }
+
+export const WithInitialValues: StoryObj<ExploreSidebarProps> = {
+  render: (args) => <ExploreSidebar {...args} />,
+  args: {
+    items: mockExploresiderbarFilters,
+    initialValues: {
+      windows: true,
+      sort_by: 'low-to-high'
+    }
+  }
+}
