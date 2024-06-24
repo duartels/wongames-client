@@ -14,14 +14,22 @@ export default {
 } as Meta
 
 export const Default: StoryObj<ExploreSidebarProps> = {
-  render: (args) => <ExploreSidebar {...args} />,
+  render: (args) => (
+    <div style={{ padding: 16, maxWidth: 320 }}>
+      <ExploreSidebar {...args} />
+    </div>
+  ),
   args: {
     items: mockExploresiderbarFilters
   }
 }
 
 export const WithInitialValues: StoryObj<ExploreSidebarProps> = {
-  render: (args) => <ExploreSidebar {...args} />,
+  render: (args) => (
+    <div style={{ padding: 16, maxWidth: 320 }}>
+      <ExploreSidebar {...args} />
+    </div>
+  ),
   args: {
     items: mockExploresiderbarFilters,
     initialValues: {
