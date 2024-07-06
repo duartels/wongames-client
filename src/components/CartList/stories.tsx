@@ -37,3 +37,14 @@ export const WithButton: StoryObj<CartListProps> = {
     hasButton: true
   }
 }
+
+export const Empty: StoryObj<CartListProps> = {
+  render: (args) => (
+    <div style={{ maxWidth: 800 }}>
+      <CartList {...args} />
+    </div>
+  ),
+  args: {
+    items: []
+  }
+}
