@@ -12,7 +12,7 @@ export type BaseProps = PropsWithChildren
 export const Base = ({ children }: BaseProps) => (
   <S.Wrapper>
     <Container>
-      <Menu />
+      <Menu username="Luan" />
     </Container>
 
     <S.Content>{children}</S.Content>
