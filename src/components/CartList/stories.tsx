@@ -24,3 +24,16 @@ export const Default: StoryObj<CartListProps> = {
     total: 'R$ 399,80'
   }
 }
+
+export const WithButton: StoryObj<CartListProps> = {
+  render: (args) => (
+    <div style={{ maxWidth: 800 }}>
+      <CartList {...args} />
+    </div>
+  ),
+  args: {
+    items: mockCartList,
+    total: 'R$ 399,80',
+    hasButton: true
+  }
+}

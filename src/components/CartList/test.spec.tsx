@@ -12,4 +12,12 @@ describe('<CartList />', () => {
     expect(screen.getAllByRole('heading')).toHaveLength(2)
     expect(screen.getByText('R$ 330,00')).toBeInTheDocument()
   })
+
+  it('should render the button', () => {
+    renderWithTheme(
+      <CartList items={mockCartList} total="R$ 330,00" hasButton />
+    )
+
+    expect(screen.getByText(/buy it now/i)).toBeInTheDocument()
+  })
 })
