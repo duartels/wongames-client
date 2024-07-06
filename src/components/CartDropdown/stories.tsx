@@ -25,3 +25,20 @@ export const Default: StoryObj<CartDropdownProps> = {
     total: 'R$ 430,00'
   }
 }
+
+export const Empty: StoryObj<CartDropdownProps> = {
+  render: (args) => (
+    <div
+      style={{
+        maxWidth: '98%',
+        display: 'flex',
+        justifyContent: 'flex-end'
+      }}
+    >
+      <CartDropdown {...args} />
+    </div>
+  ),
+  args: {
+    items: []
+  }
+}
