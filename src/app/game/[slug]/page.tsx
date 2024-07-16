@@ -1,47 +1,70 @@
-import { mockGallery } from '@/components/Gallery/mock'
+import { notFound } from 'next/navigation'
+
 import { mockGameCardSlider } from '@/components/GameCardSlider/mock'
-import { gameDetailsMock } from '@/components/GameDetails/mock'
+import { TPlatform, TRating } from '@/components/GameDetails'
 import { mockHighlight } from '@/components/Highlight/mock'
+import { QUERY_GAME_BY_SLUG, QUERY_GAMES } from '@/graphql/queries/games'
+import { getClient } from '@/lib/client'
 import { Game as GameTemplate } from '@/templates/Game'
 
 export async function generateStaticParams() {
-  //const posts = await fetch('https://.../posts').then((res) => res.json())
+  const { data } = await getClient().query({
+    query: QUERY_GAMES,
+    variables: {
+      pagination: {
+        limit: 9
+      }
+    }
+  })
 
-  return [{ slug: 'cyberpunk-2077' }]
+  return data?.games?.data.map(({ attributes }) => ({
+    params: { slug: attributes!.slug }
+  }))
 }
 
-export default async function Game() {
-  const descriptionHTML = `
-  <img src="https://items.gog.com/not_a_cp/ENG_product-page-addons-2020_yellow_on_black.png"><br>
-  * Exclusive Digital Comic - Cyberpunk 2077: Big City Dreams will be available in English only.
-  <hr><p class="module">Korean Voiceover will be added on 11th December 2020.</p><br><img alt="" src="https://items.gog.com/not_a_cp/EN/EN-About-the-Game.png"><br><br><b>Cyberpunk 2077</b> is an open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. You can customize your character’s cyberware, skillset and playstyle, and explore a vast city where the choices you make shape the story and the world around you.
-  <br><br><img alt="" src="https://items.gog.com/not_a_cp/EN/EN-Mercenary-Outlaw.png"><br><br>
-  Become a cyberpunk, an urban mercenary equipped with cybernetic enhancements and build your legend on the streets of Night City.
-  <br><br><img alt="" src="https://items.gog.com/not_a_cp/EN/EN-City-of-the-Future.png"><br><br>
-  Enter the massive open world of Night City, a place that sets new standards in terms of visuals, complexity and depth.
-  <br><br><img alt="" src="https://items.gog.com/not_a_cp/EN/EN-Eternal-Life.png"><br><br>
-  Take the riskiest job of your life and go after a prototype implant that is the key to immortality.
-
-
-  <p class="description__copyrights">
-  CD PROJEKT®, Cyberpunk®, Cyberpunk 2077® are registered trademarks of CD PROJEKT S.A. © 2019
-  CD PROJEKT S.A. All rights reserved. All other copyrights and trademarks are the property of their
-  respective owners.
-</p>`
-
+export default async function Game({
+  params: { slug }
+}: {
+  params: { slug: string }
+}) {
   async function getProps() {
+    const { data } = await getClient().query({
+      query: QUERY_GAME_BY_SLUG,
+      variables: { slug }
+    })
+
+    if (!data.games?.data.length) {
+      return notFound()
+    }
+
+    const game = data.games.data[0].attributes
+
     return {
-      cover:
-        'https://images.gog-statics.com/5643a7c831df452d29005caeca24c28cdbfaa6fbea5a9556b147ee26d325fa70_bg_crop_1366x655.jpg',
+      cover: `http://localhost:1337${game!.cover!.data!.attributes!.src}`,
       gameInfo: {
-        title: 'Cyberpunk 2077',
-        description:
-          'Cyberpunk 2077 is an open-world, action-adventure story set in Night City, a megalopolis obsessed with power, glamour and body modification. You play as V, a mercenary outlaw going after a one-of-a-kind implant that is the key to immortality. You can customize your character’s cyberware, skillset and playstyle, and explore a vast city where the choices you make shape the story and the world around you.',
-        price: '200.00'
+        title: game!.name,
+        price: game!.price.toString(),
+        description: game!.short_description || ''
       },
-      gallery: [...mockGallery],
-      description: descriptionHTML,
-      details: gameDetailsMock,
+      gallery: game!.gallery?.data.map((image) => ({
+        src: `http://localhost:1337${image!.attributes!.src}`,
+        label: image!.attributes!.label || ''
+      })),
+      description: game!.description || '',
+      details: {
+        developer: game!.developers?.data[0]?.attributes?.name || '',
+        releaseDate: game!.release_date,
+        rating: game!.rating as TRating,
+        platforms:
+          game!.platforms?.data.map(
+            (platform) => platform!.attributes!.name as TPlatform
+          ) || [],
+        publisher: game!.publisher?.data?.attributes?.name || '',
+        genres:
+          game?.categories?.data.map(
+            (category) => category!.attributes!.name
+          ) || []
+      },
       upcomingGames: [...mockGameCardSlider],
       upcomingHighlight: mockHighlight,
       recommendedGames: [...mockGameCardSlider]
