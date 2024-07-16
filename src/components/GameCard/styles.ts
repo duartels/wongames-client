@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styled, { css, DefaultTheme } from 'styled-components'
 
 export const Wrapper = styled.article`
@@ -52,6 +53,10 @@ export const Content = styled.div`
 
 export const Info = styled.div`
   max-width: calc(100% - 2.5rem);
+`
+
+export const StyledLink = styled(Link)`
+  text-decoration: none;
 `
 
 export const Title = styled.h3`

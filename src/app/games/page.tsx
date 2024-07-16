@@ -16,7 +16,7 @@ export default async function Games() {
 
     const games = data.games?.data.map((game) => ({
       title: game!.attributes!.name,
-      slug: game!.attributes!.slug,
+      slug: game!.attributes!.slug || '',
       developer: game!.attributes!.developers!.data[0]!.attributes!.name,
       img: `http://localhost:1337${game!.attributes!.cover!.data!.attributes!.url}`,
       price: new Intl.NumberFormat('en', {

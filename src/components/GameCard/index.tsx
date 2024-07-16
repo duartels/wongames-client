@@ -12,6 +12,7 @@ import * as S from './styles'
 
 export type GameCardProps = {
   title: string
+  slug: string
   developer: string
   img: string
   price: string
@@ -26,6 +27,7 @@ export type GameCardProps = {
 export const GameCard = ({
   developer,
   img,
+  slug,
   price,
   title,
   onFav,
@@ -36,15 +38,19 @@ export const GameCard = ({
   ribbonColor = 'primary'
 }: GameCardProps) => (
   <S.Wrapper>
-    <S.ImageBox>
-      <img src={img} alt={title} />
-    </S.ImageBox>
+    <S.StyledLink href={`game/${slug}`}>
+      <S.ImageBox>
+        <img src={img} alt={title} />
+      </S.ImageBox>
+    </S.StyledLink>
 
     <S.Content>
-      <S.Info>
-        <S.Title>{title}</S.Title>
-        <S.Developer>{developer}</S.Developer>
-      </S.Info>
+      <S.StyledLink href={`game/${slug}`}>
+        <S.Info>
+          <S.Title>{title}</S.Title>
+          <S.Developer>{developer}</S.Developer>
+        </S.Info>
+      </S.StyledLink>
 
       <S.FavButton role="button" onClick={onFav}>
         {favorite ? (
