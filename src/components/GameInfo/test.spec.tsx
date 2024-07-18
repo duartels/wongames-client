@@ -13,7 +13,7 @@ describe('<GameInfo />', () => {
       screen.getByRole('heading', { name: mockGameInfo.title })
     ).toBeInTheDocument()
     expect(screen.getByText(mockGameInfo.description)).toBeInTheDocument()
-    expect(screen.getByText(`$${mockGameInfo.price}`)).toBeInTheDocument()
+    expect(screen.getByText(`$${mockGameInfo.price}.00`)).toBeInTheDocument()
   })
 
   it('should render buttons', () => {
